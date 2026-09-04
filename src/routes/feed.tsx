@@ -26,8 +26,8 @@ function FeedPage() {
     <div className="mx-auto w-[min(1200px,94vw)] py-12">
       <h1 className="text-4xl font-bold sm:text-5xl">Field feed</h1>
       <p className="mt-3 max-w-xl text-sm text-muted-foreground">
-        Cards play automatically as they enter view, exactly like a social timeline — mute or like any
-        dispatch as you scroll.
+        Cards play automatically as they enter view, exactly like a social timeline — mute or like
+        any dispatch as you scroll.
       </p>
       <div className="mt-9">
         <MediaFeed />

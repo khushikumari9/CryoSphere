@@ -52,7 +52,15 @@ const posts: Post[] = [
   },
 ];
 
-function FeedCard({ post, muted, onToggleMute }: { post: Post; muted: boolean; onToggleMute: () => void }) {
+function FeedCard({
+  post,
+  muted,
+  onToggleMute,
+}: {
+  post: Post;
+  muted: boolean;
+  onToggleMute: () => void;
+}) {
   const ref = useRef<HTMLElement | null>(null);
   const [playing, setPlaying] = useState(false);
   const [liked, setLiked] = useState(false);
@@ -60,9 +68,12 @@ function FeedCard({ post, muted, onToggleMute }: { post: Post; muted: boolean; o
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const io = new IntersectionObserver((entries) => setPlaying(entries[0]?.isIntersecting ?? false), {
-      threshold: 0.6,
-    });
+    const io = new IntersectionObserver(
+      (entries) => setPlaying(entries[0]?.isIntersecting ?? false),
+      {
+        threshold: 0.6,
+      },
+    );
     io.observe(el);
     return () => io.disconnect();
   }, []);

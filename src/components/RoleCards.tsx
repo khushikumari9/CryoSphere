@@ -17,7 +17,10 @@ const meta: Record<Role, { icon: LucideIcon; blurb: string }> = {
   Teacher: { icon: Presentation, blurb: "Classroom kits, lesson plans and live feeds." },
   Scientist: { icon: Atom, blurb: "Raw instrument streams and calibration logs." },
   Researcher: { icon: Microscope, blurb: "Publications, cruise reports and sample archives." },
-  "Science Communicator": { icon: Megaphone, blurb: "Story assets, b-roll and plain-language briefs." },
+  "Science Communicator": {
+    icon: Megaphone,
+    blurb: "Story assets, b-roll and plain-language briefs.",
+  },
   "Policy Maker": { icon: Landmark, blurb: "Indicator summaries and treaty-ready briefings." },
   Other: { icon: Compass, blurb: "Explore everything with a general-purpose view." },
 };

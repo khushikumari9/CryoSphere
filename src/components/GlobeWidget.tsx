@@ -219,10 +219,16 @@ export function GlobeWidget() {
     if (rho > 1) return;
     const c = Math.asin(rho);
     const p0 = rot.current.lat * RAD;
-    const lat = Math.asin(Math.cos(c) * Math.sin(p0) + (rho ? (y * Math.sin(c) * Math.cos(p0)) / rho : 0)) / RAD;
+    const lat =
+      Math.asin(Math.cos(c) * Math.sin(p0) + (rho ? (y * Math.sin(c) * Math.cos(p0)) / rho : 0)) /
+      RAD;
     const lon =
       rot.current.lon +
-      Math.atan2(x * Math.sin(c), rho * Math.cos(c) * Math.cos(p0) - y * Math.sin(c) * Math.sin(p0)) / RAD;
+      Math.atan2(
+        x * Math.sin(c),
+        rho * Math.cos(c) * Math.cos(p0) - y * Math.sin(c) * Math.sin(p0),
+      ) /
+        RAD;
     const norm = ((((lon + 180) % 360) + 360) % 360) - 180;
     setTarget({ lat: +lat.toFixed(2), lon: +norm.toFixed(2) });
     setLatInput(lat.toFixed(2));
@@ -244,7 +250,9 @@ export function GlobeWidget() {
 
       <div className="flex flex-col justify-center gap-5">
         <div>
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">Coordinate search</p>
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+            Coordinate search
+          </p>
           <h3 className="mt-2 text-2xl font-bold">Pin any point on the cryosphere</h3>
           <p className="mt-2 text-sm text-muted-foreground">
             Spin the globe, tap a point, or type precise decimal degrees to lock a survey target.

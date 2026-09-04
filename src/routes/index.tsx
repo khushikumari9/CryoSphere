@@ -49,8 +49,9 @@ function Home() {
               The poles, <span className="text-gradient">rendered legible.</span>
             </h1>
             <p className="mt-4 max-w-xl text-base text-muted-foreground sm:text-lg">
-              CryoSphere brings station telemetry, expedition media and an interactive globe into one
-              portal — tuned to how you work, whether you teach it, publish it or legislate on it.
+              CryoSphere brings station telemetry, expedition media and an interactive globe into
+              one portal — tuned to how you work, whether you teach it, publish it or legislate on
+              it.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               {session ? (
@@ -84,9 +85,21 @@ function Home() {
       ) : (
         <section className="mx-auto grid w-[min(1200px,94vw)] gap-4 py-10 sm:grid-cols-3">
           {[
-            { icon: Globe2, title: "Coordinate globe", body: "Pin any latitude and longitude to the nearest station." },
-            { icon: LineChart, title: "Live dashboard", body: "Temperature, wind and sea ice refreshed continuously." },
-            { icon: Sparkle, title: "Field feed", body: "Auto-playing dispatches straight from the ice." },
+            {
+              icon: Globe2,
+              title: "Coordinate globe",
+              body: "Pin any latitude and longitude to the nearest station.",
+            },
+            {
+              icon: LineChart,
+              title: "Live dashboard",
+              body: "Temperature, wind and sea ice refreshed continuously.",
+            },
+            {
+              icon: Sparkle,
+              title: "Field feed",
+              body: "Auto-playing dispatches straight from the ice.",
+            },
           ].map(({ icon: Icon, title, body }) => (
             <div key={title} className="glass rounded-3xl p-6">
               <Icon className="h-5 w-5 text-accent" />

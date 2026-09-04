@@ -79,11 +79,8 @@
   --glass: oklch(1 0 0 / 55%);
   --glass-border: oklch(1 0 0 / 70%);
   --glass-blur: 22px;
-  --gradient-sky: radial-gradient(
-      120% 90% at 10% 0%,
-      oklch(0.9 0.08 205 / 0.75) 0%,
-      transparent 60%
-    ),
+  --gradient-sky:
+    radial-gradient(120% 90% at 10% 0%, oklch(0.9 0.08 205 / 0.75) 0%, transparent 60%),
     radial-gradient(100% 80% at 95% 5%, oklch(0.86 0.1 165 / 0.55) 0%, transparent 55%),
     linear-gradient(180deg, oklch(0.98 0.012 220) 0%, oklch(0.94 0.026 226) 100%);
   --gradient-brand: linear-gradient(120deg, oklch(0.6 0.15 232), oklch(0.75 0.14 190));
@@ -122,11 +119,8 @@
   --glass: oklch(0.28 0.05 256 / 45%);
   --glass-border: oklch(1 0 0 / 16%);
   --glass-blur: 26px;
-  --gradient-sky: radial-gradient(
-      110% 85% at 12% 0%,
-      oklch(0.45 0.16 268 / 0.65) 0%,
-      transparent 58%
-    ),
+  --gradient-sky:
+    radial-gradient(110% 85% at 12% 0%, oklch(0.45 0.16 268 / 0.65) 0%, transparent 58%),
     radial-gradient(95% 75% at 92% 8%, oklch(0.55 0.18 168 / 0.42) 0%, transparent 55%),
     linear-gradient(180deg, oklch(0.18 0.045 258) 0%, oklch(0.13 0.035 262) 100%);
   --gradient-brand: linear-gradient(120deg, oklch(0.72 0.15 196), oklch(0.78 0.18 158));

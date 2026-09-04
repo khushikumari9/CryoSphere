@@ -39,7 +39,9 @@ function Metric({
   return (
     <div className="glass shimmer-border rounded-3xl p-5">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">{label}</span>
+        <span className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+          {label}
+        </span>
         <Icon className="h-4 w-4 text-accent" />
       </div>
       <p className="font-display mt-3 text-3xl font-bold">
@@ -78,9 +80,12 @@ export function DataDashboard() {
     <div className="space-y-6">
       <div className="flex flex-wrap items-center gap-3">
         <span className="glass inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-accent" /> Live telemetry · update #{tick}
+          <span className="h-2 w-2 animate-pulse rounded-full bg-accent" /> Live telemetry · update
+          #{tick}
         </span>
-        <span className="text-xs text-muted-foreground">Simulated station stream, refreshed every 3s</span>
+        <span className="text-xs text-muted-foreground">
+          Simulated station stream, refreshed every 3s
+        </span>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
@@ -105,7 +110,13 @@ export function DataDashboard() {
           unit="M km²"
           delta="Passive microwave composite"
         />
-        <Metric icon={Droplets} label="Sea surface salinity" value="34.2" unit="PSU" delta="CTD cast 118" />
+        <Metric
+          icon={Droplets}
+          label="Sea surface salinity"
+          value="34.2"
+          unit="PSU"
+          delta="CTD cast 118"
+        />
       </div>
 
       <div className="grid gap-4 lg:grid-cols-2">
@@ -123,7 +134,12 @@ export function DataDashboard() {
                   </linearGradient>
                 </defs>
                 <CartesianGrid stroke="var(--color-border)" vertical={false} />
-                <XAxis dataKey="t" stroke="var(--color-muted-foreground)" fontSize={11} interval={5} />
+                <XAxis
+                  dataKey="t"
+                  stroke="var(--color-muted-foreground)"
+                  fontSize={11}
+                  interval={5}
+                />
                 <YAxis stroke="var(--color-muted-foreground)" fontSize={11} width={36} />
                 <Tooltip
                   contentStyle={{
@@ -151,7 +167,12 @@ export function DataDashboard() {
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={data}>
                 <CartesianGrid stroke="var(--color-border)" vertical={false} />
-                <XAxis dataKey="t" stroke="var(--color-muted-foreground)" fontSize={11} interval={5} />
+                <XAxis
+                  dataKey="t"
+                  stroke="var(--color-muted-foreground)"
+                  fontSize={11}
+                  interval={5}
+                />
                 <YAxis stroke="var(--color-muted-foreground)" fontSize={11} width={36} />
                 <Tooltip
                   contentStyle={{
@@ -173,8 +194,18 @@ export function DataDashboard() {
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={data}>
                 <CartesianGrid stroke="var(--color-border)" vertical={false} />
-                <XAxis dataKey="t" stroke="var(--color-muted-foreground)" fontSize={11} interval={3} />
-                <YAxis stroke="var(--color-muted-foreground)" fontSize={11} width={36} domain={["auto", "auto"]} />
+                <XAxis
+                  dataKey="t"
+                  stroke="var(--color-muted-foreground)"
+                  fontSize={11}
+                  interval={3}
+                />
+                <YAxis
+                  stroke="var(--color-muted-foreground)"
+                  fontSize={11}
+                  width={36}
+                  domain={["auto", "auto"]}
+                />
                 <Tooltip
                   contentStyle={{
                     background: "var(--color-card)",
@@ -183,7 +214,13 @@ export function DataDashboard() {
                     color: "var(--color-card-foreground)",
                   }}
                 />
-                <Line type="monotone" dataKey="ice" stroke="var(--color-chart-3)" strokeWidth={2} dot={false} />
+                <Line
+                  type="monotone"
+                  dataKey="ice"
+                  stroke="var(--color-chart-3)"
+                  strokeWidth={2}
+                  dot={false}
+                />
               </LineChart>
             </ResponsiveContainer>
           </div>
