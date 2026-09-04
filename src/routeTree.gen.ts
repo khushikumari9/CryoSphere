@@ -10,9 +10,14 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as CommunityRouteImport } from './routes/community'
 import { Route as DataRouteImport } from './routes/data'
+import { Route as EducationRouteImport } from './routes/education'
+import { Route as ExpeditionsRouteImport } from './routes/expeditions'
 import { Route as ExploreRouteImport } from './routes/explore'
 import { Route as FeedRouteImport } from './routes/feed'
+import { Route as KnowledgeRouteImport } from './routes/knowledge'
 import { Route as MediaRouteImport } from './routes/media'
 
 const IndexRoute = IndexRouteImport.update({
@@ -20,9 +25,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CommunityRoute = CommunityRouteImport.update({
+  id: '/community',
+  path: '/community',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const DataRoute = DataRouteImport.update({
   id: '/data',
   path: '/data',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EducationRoute = EducationRouteImport.update({
+  id: '/education',
+  path: '/education',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ExpeditionsRoute = ExpeditionsRouteImport.update({
+  id: '/expeditions',
+  path: '/expeditions',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ExploreRoute = ExploreRouteImport.update({
@@ -35,6 +60,11 @@ const FeedRoute = FeedRouteImport.update({
   path: '/feed',
   getParentRoute: () => rootRouteImport,
 } as any)
+const KnowledgeRoute = KnowledgeRouteImport.update({
+  id: '/knowledge',
+  path: '/knowledge',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MediaRoute = MediaRouteImport.update({
   id: '/media',
   path: '/media',
@@ -43,39 +73,90 @@ const MediaRoute = MediaRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/community': typeof CommunityRoute
   '/data': typeof DataRoute
+  '/education': typeof EducationRoute
+  '/expeditions': typeof ExpeditionsRoute
   '/explore': typeof ExploreRoute
   '/feed': typeof FeedRoute
+  '/knowledge': typeof KnowledgeRoute
   '/media': typeof MediaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/community': typeof CommunityRoute
   '/data': typeof DataRoute
+  '/education': typeof EducationRoute
+  '/expeditions': typeof ExpeditionsRoute
   '/explore': typeof ExploreRoute
   '/feed': typeof FeedRoute
+  '/knowledge': typeof KnowledgeRoute
   '/media': typeof MediaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/community': typeof CommunityRoute
   '/data': typeof DataRoute
+  '/education': typeof EducationRoute
+  '/expeditions': typeof ExpeditionsRoute
   '/explore': typeof ExploreRoute
   '/feed': typeof FeedRoute
+  '/knowledge': typeof KnowledgeRoute
   '/media': typeof MediaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/data' | '/explore' | '/feed' | '/media'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/community'
+    | '/data'
+    | '/education'
+    | '/expeditions'
+    | '/explore'
+    | '/feed'
+    | '/knowledge'
+    | '/media'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/data' | '/explore' | '/feed' | '/media'
-  id: '__root__' | '/' | '/data' | '/explore' | '/feed' | '/media'
+  to:
+    | '/'
+    | '/about'
+    | '/community'
+    | '/data'
+    | '/education'
+    | '/expeditions'
+    | '/explore'
+    | '/feed'
+    | '/knowledge'
+    | '/media'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/community'
+    | '/data'
+    | '/education'
+    | '/expeditions'
+    | '/explore'
+    | '/feed'
+    | '/knowledge'
+    | '/media'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  CommunityRoute: typeof CommunityRoute
   DataRoute: typeof DataRoute
+  EducationRoute: typeof EducationRoute
+  ExpeditionsRoute: typeof ExpeditionsRoute
   ExploreRoute: typeof ExploreRoute
   FeedRoute: typeof FeedRoute
+  KnowledgeRoute: typeof KnowledgeRoute
   MediaRoute: typeof MediaRoute
 }
 
@@ -88,11 +169,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/community': {
+      id: '/community'
+      path: '/community'
+      fullPath: '/community'
+      preLoaderRoute: typeof CommunityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/data': {
       id: '/data'
       path: '/data'
       fullPath: '/data'
       preLoaderRoute: typeof DataRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/education': {
+      id: '/education'
+      path: '/education'
+      fullPath: '/education'
+      preLoaderRoute: typeof EducationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/expeditions': {
+      id: '/expeditions'
+      path: '/expeditions'
+      fullPath: '/expeditions'
+      preLoaderRoute: typeof ExpeditionsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/explore': {
@@ -109,6 +218,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FeedRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/knowledge': {
+      id: '/knowledge'
+      path: '/knowledge'
+      fullPath: '/knowledge'
+      preLoaderRoute: typeof KnowledgeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/media': {
       id: '/media'
       path: '/media'
@@ -121,9 +237,14 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  CommunityRoute: CommunityRoute,
   DataRoute: DataRoute,
+  EducationRoute: EducationRoute,
+  ExpeditionsRoute: ExpeditionsRoute,
   ExploreRoute: ExploreRoute,
   FeedRoute: FeedRoute,
+  KnowledgeRoute: KnowledgeRoute,
   MediaRoute: MediaRoute,
 }
 export const routeTree = rootRouteImport
