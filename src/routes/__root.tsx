@@ -10,7 +10,10 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { LoginOverlay } from "../components/LoginOverlay";
+import { NavBar } from "../components/NavBar";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { SessionProvider, ThemeProvider } from "../lib/portal-state";
 
 function NotFoundComponent() {
   return (
@@ -77,21 +80,32 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "CryoSphere — Polar Science Portal" },
+      {
+        name: "description",
+        content:
+          "A polar science portal: live station telemetry, an interactive coordinate globe and expedition media.",
+      },
+      { property: "og:title", content: "CryoSphere — Polar Science Portal" },
+      {
+        property: "og:description",
+        content: "Live polar telemetry, an interactive globe and expedition media in one portal.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
         rel: "stylesheet",
         href: appCss,
       },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Manrope:wght@400;500;600;700&display=swap",
+      },
+      { rel: "icon", href: "/favicon.png", type: "image/png" },
     ],
   }),
   shellComponent: RootShell,
@@ -119,8 +133,24 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <ThemeProvider>
+        <SessionProvider>
+          <div className="flex min-h-screen flex-col">
+            <NavBar />
+            <main className="flex-1">
+              {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
+              <Outlet />
+            </main>
+            <footer className="mx-auto mb-4 w-[min(1200px,94vw)]">
+              <div className="glass flex flex-wrap items-center justify-between gap-2 rounded-2xl px-5 py-4 text-xs text-muted-foreground">
+                <span>© {new Date().getFullYear()} CryoSphere Polar Science Portal</span>
+                <span>Demo datasets · simulated telemetry</span>
+              </div>
+            </footer>
+          </div>
+          <LoginOverlay />
+        </SessionProvider>
+      </ThemeProvider>
     </QueryClientProvider>
   );
 }
