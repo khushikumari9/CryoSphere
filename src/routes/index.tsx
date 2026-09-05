@@ -1,11 +1,27 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Globe2, LineChart, Sparkle } from "lucide-react";
+import {
+  BookOpen,
+  Compass,
+  GraduationCap,
+  Home as HomeIcon,
+  Info,
+  Radio,
+  Sparkle,
+} from "lucide-react";
 
 import hero from "@/assets/hero-aurora.jpg";
-import { GlobeWidget } from "@/components/GlobeWidget";
 import { MediaFeed } from "@/components/MediaFeed";
 import { RoleCards } from "@/components/RoleCards";
 import { useSession } from "@/lib/portal-state";
+
+const heroNav = [
+  { to: "/", label: "Home", icon: HomeIcon },
+  { to: "/media", label: "Media", icon: Radio },
+  { to: "/knowledge", label: "Knowledge Repository", icon: BookOpen },
+  { to: "/education", label: "Education Resources", icon: GraduationCap },
+  { to: "/expeditions", label: "Expeditions", icon: Compass },
+  { to: "/about", label: "About", icon: Info },
+] as const;
 
 export const Route = createFileRoute("/")({
   head: () => ({
