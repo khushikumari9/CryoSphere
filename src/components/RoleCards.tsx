@@ -1,27 +1,18 @@
-import {
-  Atom,
-  Check,
-  Compass,
-  GraduationCap,
-  Landmark,
-  Megaphone,
-  Microscope,
-  Presentation,
-} from "lucide-react";
+import { Check, Compass, GraduationCap, Microscope, ShieldCheck } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 import { ROLES, useSession, type Role } from "@/lib/portal-state";
 
 const meta: Record<Role, { icon: LucideIcon; blurb: string }> = {
-  Student: { icon: GraduationCap, blurb: "Guided lessons, glossaries and starter datasets." },
-  Teacher: { icon: Presentation, blurb: "Classroom kits, lesson plans and live feeds." },
-  Scientist: { icon: Atom, blurb: "Raw instrument streams and calibration logs." },
-  Researcher: { icon: Microscope, blurb: "Publications, cruise reports and sample archives." },
-  "Science Communicator": {
-    icon: Megaphone,
-    blurb: "Story assets, b-roll and plain-language briefs.",
+  Admin: { icon: ShieldCheck, blurb: "Manage portal content, users and data streams." },
+  "Researcher & Scientist": {
+    icon: Microscope,
+    blurb: "Raw instrument streams, publications and sample archives.",
   },
-  "Policy Maker": { icon: Landmark, blurb: "Indicator summaries and treaty-ready briefings." },
+  "Student or Teacher": {
+    icon: GraduationCap,
+    blurb: "Guided lessons, classroom kits and starter datasets.",
+  },
   Other: { icon: Compass, blurb: "Explore everything with a general-purpose view." },
 };
 
@@ -48,7 +39,7 @@ export function RoleCards() {
       </div>
 
       <div className="mt-7 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {ROLES.map((role, i) => {
+        {ROLES.map((role) => {
           const { icon: Icon, blurb } = meta[role];
           const active = session?.role === role;
           return (
@@ -58,7 +49,7 @@ export function RoleCards() {
               aria-pressed={active}
               className={`glass shimmer-border group relative overflow-hidden rounded-3xl p-5 text-left transition-all duration-300 hover:-translate-y-1.5 hover:glow ${
                 active ? "ring-2 ring-ring" : ""
-              } ${i === 6 ? "sm:col-span-2 lg:col-span-1" : ""}`}
+              }`}
             >
               <div className="bg-brand grid h-11 w-11 place-items-center rounded-2xl text-primary-foreground transition-transform group-hover:scale-110">
                 <Icon className="h-5 w-5" />

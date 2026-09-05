@@ -9,7 +9,7 @@ import {
   Sparkle,
 } from "lucide-react";
 
-import hero from "@/assets/hero-aurora.jpg";
+import heroVideo from "@/assets/hero-polar.mp4.asset.json";
 import { MediaFeed } from "@/components/MediaFeed";
 import { RoleCards } from "@/components/RoleCards";
 import { useSession } from "@/lib/portal-state";
@@ -44,17 +44,19 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const { session, setLoginOpen } = useSession();
+  const { session } = useSession();
 
   return (
     <div className="pb-24">
       <section className="mx-auto w-[min(1200px,94vw)] pt-10">
         <div className="glass shimmer-border relative overflow-hidden rounded-[2rem] p-6 sm:p-12">
-          <img
-            src={hero}
-            alt="Aurora australis above an Antarctic research hut"
-            width={1920}
-            height={1080}
+          <video
+            src={heroVideo.url}
+            autoPlay
+            loop
+            muted
+            playsInline
+            aria-hidden="true"
             className="absolute inset-0 h-full w-full object-cover opacity-45 dark:opacity-60"
           />
           <div className="relative max-w-2xl">
@@ -81,14 +83,6 @@ function Home() {
                 </Link>
               ))}
             </nav>
-            {!session && (
-              <button
-                onClick={() => setLoginOpen(true)}
-                className="bg-brand glow mt-4 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03]"
-              >
-                Log in to choose your role
-              </button>
-            )}
           </div>
         </div>
       </section>
