@@ -89,6 +89,9 @@ function Home() {
                 Log in to choose your role
               </button>
             )}
+          </div>
+        </div>
+      </section>
 
       {session && <RoleCards />}
 
