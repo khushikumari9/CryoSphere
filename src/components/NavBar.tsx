@@ -8,9 +8,10 @@ import { useSession, useTheme } from "@/lib/portal-state";
 const links = [
   { to: "/", label: "Home" },
   { to: "/feed", label: "Field Feed" },
-  { to: "/explore", label: "Globe" },
   { to: "/data", label: "Live Data" },
-  { to: "/media", label: "Media" },
+  { to: "/knowledge", label: "Knowledge" },
+  { to: "/education", label: "Education" },
+  { to: "/community", label: "Community" },
 ] as const;
 
 export function NavBar() {

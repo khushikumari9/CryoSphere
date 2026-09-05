@@ -1,11 +1,27 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
-import { ArrowRight, Globe2, LineChart, Sparkle } from "lucide-react";
+import {
+  BookOpen,
+  Compass,
+  GraduationCap,
+  Home as HomeIcon,
+  Info,
+  Radio,
+  Sparkle,
+} from "lucide-react";
 
 import hero from "@/assets/hero-aurora.jpg";
-import { GlobeWidget } from "@/components/GlobeWidget";
 import { MediaFeed } from "@/components/MediaFeed";
 import { RoleCards } from "@/components/RoleCards";
 import { useSession } from "@/lib/portal-state";
+
+const heroNav = [
+  { to: "/", label: "Home", icon: HomeIcon },
+  { to: "/media", label: "Media", icon: Radio },
+  { to: "/knowledge", label: "Knowledge Repository", icon: BookOpen },
+  { to: "/education", label: "Education Resources", icon: GraduationCap },
+  { to: "/expeditions", label: "Expeditions", icon: Compass },
+  { to: "/about", label: "About", icon: Info },
+] as const;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -49,76 +65,35 @@ function Home() {
               The poles, <span className="text-gradient">rendered legible.</span>
             </h1>
             <p className="mt-4 max-w-xl text-base text-muted-foreground sm:text-lg">
-              CryoSphere brings station telemetry, expedition media and an interactive globe into
-              one portal — tuned to how you work, whether you teach it, publish it or legislate on
-              it.
+              CryoSphere brings station telemetry, expedition media and polar knowledge into one
+              portal — tuned to how you work, whether you teach it, publish it or legislate on it.
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
-              {session ? (
+            <nav className="mt-7 flex flex-wrap gap-3">
+              {heroNav.map(({ to, label, icon: Icon }) => (
                 <Link
-                  to="/data"
-                  className="bg-brand glow inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03]"
+                  key={to}
+                  to={to}
+                  className="glass inline-flex items-center gap-2 rounded-full px-5 py-3 text-sm font-semibold text-foreground transition-transform hover:scale-[1.03]"
+                  activeProps={{ className: "bg-brand text-primary-foreground" }}
+                  activeOptions={{ exact: to === "/" }}
                 >
-                  Open live dashboard <ArrowRight className="h-4 w-4" />
+                  <Icon className="h-4 w-4 text-accent" /> {label}
                 </Link>
-              ) : (
-                <button
-                  onClick={() => setLoginOpen(true)}
-                  className="bg-brand glow inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03]"
-                >
-                  Log in to choose your role <ArrowRight className="h-4 w-4" />
-                </button>
-              )}
-              <Link
-                to="/explore"
-                className="glass inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-foreground"
+              ))}
+            </nav>
+            {!session && (
+              <button
+                onClick={() => setLoginOpen(true)}
+                className="bg-brand glow mt-4 inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-primary-foreground transition-transform hover:scale-[1.03]"
               >
-                <Globe2 className="h-4 w-4 text-accent" /> Spin the globe
-              </Link>
-            </div>
+                Log in to choose your role
+              </button>
+            )}
           </div>
         </div>
       </section>
 
-      {session ? (
-        <RoleCards />
-      ) : (
-        <section className="mx-auto grid w-[min(1200px,94vw)] gap-4 py-10 sm:grid-cols-3">
-          {[
-            {
-              icon: Globe2,
-              title: "Coordinate globe",
-              body: "Pin any latitude and longitude to the nearest station.",
-            },
-            {
-              icon: LineChart,
-              title: "Live dashboard",
-              body: "Temperature, wind and sea ice refreshed continuously.",
-            },
-            {
-              icon: Sparkle,
-              title: "Field feed",
-              body: "Auto-playing dispatches straight from the ice.",
-            },
-          ].map(({ icon: Icon, title, body }) => (
-            <div key={title} className="glass rounded-3xl p-6">
-              <Icon className="h-5 w-5 text-accent" />
-              <h2 className="mt-4 text-lg font-semibold">{title}</h2>
-              <p className="mt-1.5 text-sm text-muted-foreground">{body}</p>
-            </div>
-          ))}
-        </section>
-      )}
-
-      <section className="mx-auto w-[min(1200px,94vw)] py-8">
-        <h2 className="text-3xl font-bold sm:text-4xl">Locate your survey point</h2>
-        <p className="mt-2 max-w-xl text-sm text-muted-foreground">
-          Drag to rotate, click the sphere, or type decimal degrees.
-        </p>
-        <div className="mt-6">
-          <GlobeWidget />
-        </div>
-      </section>
+      {session && <RoleCards />}
 
       <section className="mx-auto w-[min(1200px,94vw)] py-8">
         <div className="flex flex-wrap items-end justify-between gap-3">
