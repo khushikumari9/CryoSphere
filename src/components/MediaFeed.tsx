@@ -1,7 +1,9 @@
 import { Bookmark, Heart, MessageCircle, Send, Volume2, VolumeX } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+import camp from "@/assets/feed-camp.jpg";
 import icecore from "@/assets/feed-icecore.jpg";
+import penguins from "@/assets/feed-penguins.jpg";
 import station from "@/assets/feed-station.jpg";
 import vessel from "@/assets/feed-vessel.jpg";
 
