@@ -52,6 +52,28 @@ const posts: Post[] = [
     likes: 3204,
     comments: 196,
   },
+  {
+    id: "p4",
+    author: "Camp Sigma",
+    handle: "@camp_sigma",
+    location: "Ross Ice Shelf",
+    image: camp,
+    caption:
+      "Twelve tents up before the wind turned. Deep-field camp operational, first radar transect starts at 0600.",
+    likes: 1520,
+    comments: 63,
+  },
+  {
+    id: "p5",
+    author: "Seabird Survey Team",
+    handle: "@icecolony",
+    location: "Atka Bay",
+    image: penguins,
+    caption:
+      "Colony count complete — 4,180 adults on the fast ice this morning, up slightly on last season.",
+    likes: 4890,
+    comments: 241,
+  },
 ];
 
 function FeedCard({
