@@ -44,12 +44,9 @@ export const useTheme = () => useContext(ThemeContext);
 /* ---------------- session ---------------- */
 
 export const ROLES = [
-  "Student",
-  "Teacher",
-  "Scientist",
-  "Researcher",
-  "Science Communicator",
-  "Policy Maker",
+  "Admin",
+  "Researcher & Scientist",
+  "Student or Teacher",
   "Other",
 ] as const;
 

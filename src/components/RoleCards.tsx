@@ -1,27 +1,18 @@
-import {
-  Atom,
-  Check,
-  Compass,
-  GraduationCap,
-  Landmark,
-  Megaphone,
-  Microscope,
-  Presentation,
-} from "lucide-react";
+import { Check, Compass, GraduationCap, Microscope, ShieldCheck } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 import { ROLES, useSession, type Role } from "@/lib/portal-state";
 
 const meta: Record<Role, { icon: LucideIcon; blurb: string }> = {
-  Student: { icon: GraduationCap, blurb: "Guided lessons, glossaries and starter datasets." },
-  Teacher: { icon: Presentation, blurb: "Classroom kits, lesson plans and live feeds." },
-  Scientist: { icon: Atom, blurb: "Raw instrument streams and calibration logs." },
-  Researcher: { icon: Microscope, blurb: "Publications, cruise reports and sample archives." },
-  "Science Communicator": {
-    icon: Megaphone,
-    blurb: "Story assets, b-roll and plain-language briefs.",
+  Admin: { icon: ShieldCheck, blurb: "Manage portal content, users and data streams." },
+  "Researcher & Scientist": {
+    icon: Microscope,
+    blurb: "Raw instrument streams, publications and sample archives.",
   },
-  "Policy Maker": { icon: Landmark, blurb: "Indicator summaries and treaty-ready briefings." },
+  "Student or Teacher": {
+    icon: GraduationCap,
+    blurb: "Guided lessons, classroom kits and starter datasets.",
+  },
   Other: { icon: Compass, blurb: "Explore everything with a general-purpose view." },
 };
 
