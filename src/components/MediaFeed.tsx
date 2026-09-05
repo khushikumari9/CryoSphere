@@ -174,7 +174,7 @@ function FeedCard({
 
 export function MediaFeed({ compact = false }: { compact?: boolean }) {
   const [muted, setMuted] = useState(true);
-  const list = compact ? posts.slice(0, 2) : posts;
+  const list = compact ? posts.slice(0, 4) : posts;
 
   return (
     <div className={compact ? "grid gap-6 md:grid-cols-2" : "mx-auto grid max-w-xl gap-6"}>
