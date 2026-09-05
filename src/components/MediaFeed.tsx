@@ -1,7 +1,9 @@
 import { Bookmark, Heart, MessageCircle, Send, Volume2, VolumeX } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 
+import camp from "@/assets/feed-camp.jpg";
 import icecore from "@/assets/feed-icecore.jpg";
+import penguins from "@/assets/feed-penguins.jpg";
 import station from "@/assets/feed-station.jpg";
 import vessel from "@/assets/feed-vessel.jpg";
 
@@ -49,6 +51,28 @@ const posts: Post[] = [
       "Core 312 out clean — 41 cm of bubble-rich firn. Layer counting suggests a strong 1987 volcanic marker.",
     likes: 3204,
     comments: 196,
+  },
+  {
+    id: "p4",
+    author: "Camp Sigma",
+    handle: "@camp_sigma",
+    location: "Ross Ice Shelf",
+    image: camp,
+    caption:
+      "Twelve tents up before the wind turned. Deep-field camp operational, first radar transect starts at 0600.",
+    likes: 1520,
+    comments: 63,
+  },
+  {
+    id: "p5",
+    author: "Seabird Survey Team",
+    handle: "@icecolony",
+    location: "Atka Bay",
+    image: penguins,
+    caption:
+      "Colony count complete — 4,180 adults on the fast ice this morning, up slightly on last season.",
+    likes: 4890,
+    comments: 241,
   },
 ];
 
@@ -150,7 +174,7 @@ function FeedCard({
 
 export function MediaFeed({ compact = false }: { compact?: boolean }) {
   const [muted, setMuted] = useState(true);
-  const list = compact ? posts.slice(0, 2) : posts;
+  const list = compact ? posts.slice(0, 4) : posts;
 
   return (
     <div className={compact ? "grid gap-6 md:grid-cols-2" : "mx-auto grid max-w-xl gap-6"}>
