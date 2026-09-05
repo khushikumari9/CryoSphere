@@ -9,7 +9,7 @@ import {
   Sparkle,
 } from "lucide-react";
 
-import hero from "@/assets/hero-aurora.jpg";
+import heroVideo from "@/assets/hero-polar.mp4.asset.json";
 import { MediaFeed } from "@/components/MediaFeed";
 import { RoleCards } from "@/components/RoleCards";
 import { useSession } from "@/lib/portal-state";
