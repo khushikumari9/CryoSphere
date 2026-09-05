@@ -23,6 +23,8 @@ export const Route = createFileRoute("/expeditions")({
   component: ExpeditionsPage,
 });
 
+const regions = ["Antarctica", "Arctic", "Himalaya", "IODP", "Southern Ocean"] as const;
+
 const expeditions = [
   {
     id: "e1",
@@ -36,7 +38,7 @@ const expeditions = [
   {
     id: "e2",
     name: "Weddell Deep Transect",
-    region: "Antarctica · Weddell Sea",
+    region: "Southern Ocean · Weddell Sea",
     window: "Dec 2026 – Mar 2027",
     crew: 42,
     temp: "−6 °C",
@@ -59,6 +61,33 @@ const expeditions = [
     crew: 12,
     temp: "+3 °C",
     focus: "Borehole thermistors, thaw depth, carbon flux",
+  },
+  {
+    id: "e5",
+    name: "Himalaya Glacier Mass Balance",
+    region: "Himalaya · Khumbu Valley",
+    window: "Apr – Jun 2026",
+    crew: 14,
+    temp: "−12 °C",
+    focus: "Ablation stakes, supraglacial lakes, runoff gauging",
+  },
+  {
+    id: "e6",
+    name: "IODP Expedition 403",
+    region: "IODP · Fram Strait",
+    window: "Aug – Oct 2026",
+    crew: 65,
+    temp: "−1 °C",
+    focus: "Scientific ocean drilling, sediment cores, paleoclimate",
+  },
+  {
+    id: "e7",
+    name: "Amundsen Sea Mooring Service",
+    region: "Southern Ocean · Amundsen Sea",
+    window: "Jan – Mar 2027",
+    crew: 38,
+    temp: "−2 °C",
+    focus: "Mooring recovery, seal tagging, glacial melt rates",
   },
 ];
 
