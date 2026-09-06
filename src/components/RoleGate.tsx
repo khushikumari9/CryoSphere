@@ -20,7 +20,7 @@ const meta: Record<Role, { icon: LucideIcon; blurb: string }> = {
 export function RoleGate() {
   const { session, setRole, verify } = useSession();
   const [idNumber, setIdNumber] = useState("");
-  const [institution,ExitInstitution] = useState("");
+  const [institution,setInstitution] = useState("");
   const [checking, setChecking] = useState(false);
 
   if (!session) return null;
@@ -106,7 +106,7 @@ export function RoleGate() {
               <input
                 required
                 value={institution}
-                onChange={(e) => ExitInstitution(e.target.value)}
+                onChange={(e) => setInstitution(e.target.value)}
                 placeholder="Polar research centre"
                 className="mt-1.5 w-full rounded-xl border border-input bg-background/60 px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-ring"
               />
