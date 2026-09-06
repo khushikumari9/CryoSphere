@@ -51,12 +51,13 @@ export function NavBar() {
           </button>
 
           {session ? (
-            <button
-              onClick={signOut}
-              className="hidden items-center gap-2 rounded-full border border-border px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-secondary sm:flex"
+            <Link
+              to="/profile"
+              aria-label="Open your profile dashboard"
+              className="bg-brand glow grid h-10 w-10 place-items-center rounded-full text-primary-foreground transition-transform hover:scale-105"
             >
-              <LogOut className="h-4 w-4" /> Sign out
-            </button>
+              <UserRound className="h-4 w-4" />
+            </Link>
           ) : (
             <button
               onClick={() => setLoginOpen(true)}
