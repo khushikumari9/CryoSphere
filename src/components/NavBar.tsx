@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, Moon, Sun, X, LogOut } from "lucide-react";
+import { Menu, Moon, Sun, X, UserRound } from "lucide-react";
 import { useState } from "react";
 
 import logo from "@/assets/logo-cryos.png";
@@ -9,14 +9,12 @@ const links = [
   { to: "/", label: "Home" },
   { to: "/feed", label: "Field Feed" },
   { to: "/data", label: "Live Data" },
-  { to: "/knowledge", label: "Knowledge" },
-  { to: "/education", label: "Education" },
   { to: "/community", label: "Community" },
 ] as const;
 
 export function NavBar() {
   const { theme, toggle } = useTheme();
-  const { session, setLoginOpen, signOut } = useSession();
+  const { session, setLoginOpen } = useSession();
   const [open, setOpen] = useState(false);
 
   return (
