@@ -10,9 +10,8 @@ import {
 } from "lucide-react";
 
 import heroVideo from "@/assets/hero-polar.mp4.asset.json";
+import { HomeAiChat } from "@/components/HomeAiChat";
 import { MediaFeed } from "@/components/MediaFeed";
-import { RoleCards } from "@/components/RoleCards";
-import { useSession } from "@/lib/portal-state";
 
 const heroNav = [
   { to: "/", label: "Home", icon: HomeIcon },
@@ -44,8 +43,6 @@ export const Route = createFileRoute("/")({
 });
 
 function Home() {
-  const { session } = useSession();
-
   return (
     <div className="pb-24">
       <section className="mx-auto w-[min(1200px,94vw)] pt-10">
@@ -87,8 +84,6 @@ function Home() {
         </div>
       </section>
 
-      {session && <RoleCards />}
-
       <section className="mx-auto w-[min(1200px,94vw)] py-8">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <h2 className="text-3xl font-bold sm:text-4xl">From the ice, today</h2>
@@ -100,6 +95,8 @@ function Home() {
           <MediaFeed compact />
         </div>
       </section>
+
+      <HomeAiChat />
     </div>
   );
 }

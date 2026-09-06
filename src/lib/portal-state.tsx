@@ -52,7 +52,15 @@ export const ROLES = [
 
 export type Role = (typeof ROLES)[number];
 
-type Session = { email: string; role: Role | null } | null;
+/** Roles that must pass institutional ID verification. */
+export const VERIFIED_ROLES: Role[] = ["Admin", "Researcher & Scientist"];
+
+export type Session = {
+  email: string;
+  role: Role | null;
+  /** true once the role no longer needs verification (or it passed). */
+  verified: boolean;
+} | null;
 
 const SessionContext = createContext<{
   session: Session;
@@ -61,6 +69,7 @@ const SessionContext = createContext<{
   signIn: (email: string) => void;
   signOut: () => void;
   setRole: (r: Role) => void;
+  verify: () => void;
 }>({
   session: null,
   loginOpen: false,
@@ -68,6 +77,7 @@ const SessionContext = createContext<{
   signIn: () => {},
   signOut: () => {},
   setRole: () => {},
+  verify: () => {},
 });
 
 export function SessionProvider({ children }: { children: ReactNode }) {
@@ -97,11 +107,17 @@ export function SessionProvider({ children }: { children: ReactNode }) {
       loginOpen,
       setLoginOpen,
       signIn: (email: string) => {
-        persist({ email, role: null });
+        persist({ email, role: null, verified: false });
         setLoginOpen(false);
       },
       signOut: () => persist(null),
-      setRole: (role: Role) => persist(session ? { ...session, role } : { email: "", role }),
+      setRole: (role: Role) =>
+        persist({
+          email: session?.email ?? "",
+          role,
+          verified: !VERIFIED_ROLES.includes(role),
+        }),
+      verify: () => persist(session ? { ...session, verified: true } : null),
     }),
     [session, loginOpen, persist],
   );
