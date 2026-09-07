@@ -154,6 +154,7 @@ function RootComponent() {
             </footer>
           </div>
           <LoginOverlay />
+          <RoleGate />
         </SessionProvider>
       </ThemeProvider>
     </QueryClientProvider>
