@@ -10,8 +10,10 @@ import {
 import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
+import { BackButton } from "../components/BackButton";
 import { LoginOverlay } from "../components/LoginOverlay";
 import { NavBar } from "../components/NavBar";
+import { RoleGate } from "../components/RoleGate";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { SessionProvider, ThemeProvider } from "../lib/portal-state";
 
