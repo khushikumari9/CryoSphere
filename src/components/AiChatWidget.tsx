@@ -1,29 +1,25 @@
-import { MessageSquare, Send, X } from "lucide-react";
-import { useState } from "react";
+import { MessageSquare, RotateCcw, Send, X } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
 
 import logo from "@/assets/logo-cryos.png";
-
-type Msg = { role: "user" | "assistant"; text: string };
-
-const canned =
-  "I'm the CryoSphere guide placeholder. Drop your AI platform's embed code into this widget (Insert → Embed on this page) and I'll answer with your live assistant.";
+import { messageText, usePolarChat } from "@/lib/usePolarChat";
 
 export function AiChatWidget() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState<Msg[]>([
-    {
-      role: "assistant",
-      text: "Hello! Ask me about polar datasets, expedition media, or how to cite CryoSphere material.",
-    },
-  ]);
+  const { messages, sendMessage, status, clear } = usePolarChat();
+  const scroller = useRef<HTMLDivElement>(null);
+  const field = useRef<HTMLInputElement>(null);
 
-  const send = () => {
-    const text = input.trim();
-    if (!text) return;
-    setMessages((m) => [...m, { role: "user", text }, { role: "assistant", text: canned }]);
-    setInput("");
-  };
+  const busy = status === "submitted" || status === "streaming";
+
+  useEffect(() => {
+    scroller.current?.scrollTo({ top: scroller.current.scrollHeight });
+  }, [messages, status]);
+
+  useEffect(() => {
+    if (open) field.current?.focus();
+  }, [open, busy]);
 
   return (
     <>
@@ -33,50 +29,69 @@ export function AiChatWidget() {
             <img src={logo} alt="" width={32} height={32} className="h-8 w-8" />
             <div>
               <p className="text-sm font-semibold">CryoSphere Guide</p>
-              <p className="text-xs text-accent">Online · media dissemination assistant</p>
+              <p className="text-xs text-accent">Online · polar science assistant</p>
             </div>
-            <button
-              onClick={() => setOpen(false)}
-              aria-label="Close chat"
-              className="ml-auto grid h-8 w-8 place-items-center rounded-full border border-border text-muted-foreground hover:text-foreground"
-            >
-              <X className="h-4 w-4" />
-            </button>
+            <div className="ml-auto flex items-center gap-2">
+              <button
+                onClick={clear}
+                aria-label="Start a new conversation"
+                className="grid h-8 w-8 place-items-center rounded-full border border-border text-muted-foreground hover:text-foreground"
+              >
+                <RotateCcw className="h-4 w-4" />
+              </button>
+              <button
+                onClick={() => setOpen(false)}
+                aria-label="Close chat"
+                className="grid h-8 w-8 place-items-center rounded-full border border-border text-muted-foreground hover:text-foreground"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
           </header>
 
-          <div className="flex-1 space-y-4 overflow-y-auto p-4">
-            {messages.map((m, i) => (
-              <div key={i} className={m.role === "user" ? "flex justify-end" : ""}>
-                <p
-                  className={
-                    m.role === "user"
-                      ? "max-w-[80%] rounded-2xl bg-primary px-3.5 py-2.5 text-sm text-primary-foreground"
-                      : "max-w-[92%] text-sm leading-relaxed text-foreground"
-                  }
-                >
-                  {m.text}
-                </p>
-              </div>
-            ))}
+          <div ref={scroller} className="flex-1 space-y-4 overflow-y-auto p-4">
+            {messages.map((m) => {
+              const text = messageText(m);
+              if (!text) return null;
+              return (
+                <div key={m.id} className={m.role === "user" ? "flex justify-end" : ""}>
+                  <p
+                    className={
+                      m.role === "user"
+                        ? "max-w-[80%] rounded-2xl bg-primary px-3.5 py-2.5 text-sm text-primary-foreground"
+                        : "max-w-[92%] whitespace-pre-wrap text-sm leading-relaxed text-foreground"
+                    }
+                  >
+                    {text}
+                  </p>
+                </div>
+              );
+            })}
+            {busy && <p className="animate-pulse text-sm text-muted-foreground">Thinking…</p>}
           </div>
 
           <form
             className="flex items-center gap-2 border-t border-border/60 p-3"
             onSubmit={(e) => {
               e.preventDefault();
-              send();
+              const text = input.trim();
+              if (!text || busy) return;
+              void sendMessage({ text });
+              setInput("");
             }}
           >
             <input
+              ref={field}
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask about polar media…"
+              placeholder="Ask about polar science…"
               className="min-w-0 flex-1 rounded-xl border border-input bg-background/60 px-3.5 py-2.5 text-sm outline-none focus:ring-2 focus:ring-ring"
             />
             <button
               type="submit"
+              disabled={busy}
               aria-label="Send message"
-              className="bg-brand grid h-10 w-10 shrink-0 place-items-center rounded-xl text-primary-foreground"
+              className="bg-brand grid h-10 w-10 shrink-0 place-items-center rounded-xl text-primary-foreground disabled:opacity-60"
             >
               <Send className="h-4 w-4" />
             </button>

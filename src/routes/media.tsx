@@ -67,11 +67,11 @@ function MediaPage() {
       </div>
 
       <div className="glass mt-8 rounded-3xl p-6">
-        <h2 className="text-lg font-semibold">Connect your own AI assistant</h2>
+        <h2 className="text-lg font-semibold">Ask the CryoSphere guide</h2>
         <p className="mt-1.5 max-w-2xl text-sm text-muted-foreground">
-          The floating chat widget in the corner is a styled shell. To wire it to your AI platform,
-          use the Insert menu's Embed component on this page and paste your provider's embed code —
-          the widget will then answer from your assistant.
+          The floating chat in the corner is a live polar science assistant. Ask it about sea ice,
+          ice sheets, permafrost, field stations or how to credit and cite polar data — your
+          conversation stays in this browser.
         </p>
       </div>
 
