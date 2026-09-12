@@ -88,7 +88,7 @@ function Home() {
         <div className="flex flex-wrap items-end justify-between gap-3">
           <h2 className="text-3xl font-bold sm:text-4xl">From the ice, today</h2>
           <Link to="/feed" className="text-sm font-semibold text-accent">
-            View full feed →
+            View Polar Updates →
           </Link>
         </div>
         <div className="mt-6">
