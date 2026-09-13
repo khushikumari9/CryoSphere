@@ -16,6 +16,19 @@ import {
 
 type Point = { t: string; temp: number; wind: number; ice: number };
 
+const stations = [
+  "McMurdo Station — Antarctica",
+  "Amundsen–Scott South Pole Station — Antarctica",
+  "Halley VI Research Station — Antarctica",
+  "Concordia Station — Antarctica",
+  "Vostok Station — Antarctica",
+  "Maitri Station — Antarctica",
+  "Bharati Station — Antarctica",
+  "Neumayer Station III — Antarctica",
+  "Rothera Research Station — Antarctica",
+  "Ny-Ålesund Research Station — Arctic",
+] as const;
+
 const seed: Point[] = Array.from({ length: 24 }, (_, i) => ({
   t: `${String(i).padStart(2, "0")}:00`,
   temp: -28 + Math.sin(i / 3) * 5 + (i % 4) * 0.4,
@@ -56,6 +69,7 @@ function Metric({
 export function DataDashboard() {
   const [data, setData] = useState<Point[]>(seed);
   const [tick, setTick] = useState(0);
+  const [station, setStation] = useState<(typeof stations)[number]>(stations[0]);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -78,6 +92,21 @@ export function DataDashboard() {
 
   return (
     <div className="space-y-6">
+      <label className="flex max-w-md flex-col gap-2 text-sm font-semibold">
+        Research station
+        <select
+          value={station}
+          onChange={(event) => setStation(event.target.value as (typeof stations)[number])}
+          className="glass rounded-xl px-3 py-2 text-sm font-normal text-foreground outline-none"
+        >
+          {stations.map((name) => (
+            <option key={name} value={name}>
+              {name}
+            </option>
+          ))}
+        </select>
+      </label>
+
       <div className="flex flex-wrap items-center gap-3">
         <span className="glass inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-semibold">
           <span className="h-2 w-2 animate-pulse rounded-full bg-accent" /> Live telemetry · update

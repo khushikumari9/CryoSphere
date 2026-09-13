@@ -7,7 +7,7 @@ import { useSession, useTheme } from "@/lib/portal-state";
 
 const links = [
   { to: "/", label: "Home" },
-  { to: "/feed", label: "Field Feed" },
+  { to: "/feed", label: "Polar Updates" },
   { to: "/data", label: "Live Data" },
   { to: "/community", label: "Community" },
 ] as const;
